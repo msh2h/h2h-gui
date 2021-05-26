@@ -1,0 +1,102 @@
+<form [formGroup]="volunteerInformationForm">
+    <div class="card shadow mb-4">
+        <!-- Card Header - Accordion -->
+        <a href="#volInfo" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true"
+            aria-controls="volInfo">
+            <h6 class="m-0 font-weight-bold text-primary">
+                Volunteer Information
+            </h6>
+        </a>
+        <!-- Card Content - Collapse -->
+        <div class="collapse show" id="volInfo">
+            <div class="card-body md-form">
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0 md-form">
+                        <span layout="row">First Name</span>
+
+                        <input mdbInput id="firstName" ngbTooltip="First Name" type="text"
+                            class="form-control form-control-user" formControlName="firstName"
+                            placeholder="First Name" />
+                    </div>
+                    <div class="col-sm-6">
+                        <span layout="row">Last Name</span>
+
+                        <input type="text" ngbTooltip="Last Name" class="form-control form-control-user"
+                            formControlName="lastName" placeholder="Last Name" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <span layout="row">Mobile Phone</span>
+
+                        <input type="text" ngbTooltip="Mobile Phone" class="form-control form-control-user"
+                            formControlName="mobilePhone" placeholder="Mobile Phone" />
+                    </div>
+                    <div class="col-sm-6">
+                        <span layout="row">Home Phone</span>
+
+                        <input type="text" ngbTooltip="Home Phone" class="form-control form-control-user"
+                            formControlName="homePhone" placeholder="Home Phone" />
+                    </div>
+                </div>
+                <span layout="row">Email Address</span>
+
+                <div class="form-group">
+                    <input type="email" ngbTooltip="Email Address" class="form-control form-control-user disabled"
+                        formControlName="emailAddress" placeholder="Email Address" />
+                </div>
+                <span layout="row">Passport ID</span>
+
+                <div class="form-group">
+                    <input type="text" ngbTooltip="Passport/ID" class="form-control form-control-user"
+                        formControlName="passport" placeholder="Passport/ID" />
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label>Country:</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <select placeholder="Country" class="form-control form-control-user"
+                                    formControlName="selectedCountry" role="button" aria-haspopup="true"
+                                    aria-expanded="false" [(ngModel)]="country">
+                                    <option value="" disabled selected style="display: none">
+                                        Please Select Country:
+                                    </option>
+                                    <option *ngFor="let country of countries" class="dropdown-item" [ngValue]="country">
+                                        {{ country.name }}
+                                    </option>
+                                </select></div>
+                        </div>
+                        <div class="row" *ngIf="getStates()">
+                            <div class="col-sm-3">
+                                <label>State:</label>
+                            </div>
+                            <div class="col-sm-9">
+
+                                <select placeholder="Province" class="form-control form-control-user"
+                                    formControlName="selectedState" role="button" aria-haspopup="true"
+                                    aria-expanded="false" [(ngModel)]="province">
+                                    <option value="" disabled selected style="display: none">
+                                        Please Select Province:
+                                    </option>
+                                    <option *ngFor="let province of getStates()" [ngValue]="province"
+                                        class="dropdown-item">
+                                        {{ province.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-6">
+                        <textarea ngbTooltip="Street Address" formControlName="streetAddress" type="text"
+                            class="form-control form-control-user" name="streetAddress" mdInput
+                            placeholder="StreetAddress" rows="4"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

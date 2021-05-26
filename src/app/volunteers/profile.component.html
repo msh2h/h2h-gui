@@ -1,0 +1,124 @@
+<ngx-spinner type="ball-clip-rotate-multiple" size="medium">
+  <p class="loading">Loading User Profile...</p>
+</ngx-spinner>
+
+<div *ngIf="!profile && isLoaded" class="container">
+  <span>We cannot load profile page for reason: {{error}}</span>
+</div>
+
+<div *ngIf="profile" class="container">
+  <div class="o-hidden border-0 shadow-lg">
+    <!-- Nested Row within Card Body -->
+    <div class="row">
+      <prof-volunteerInfo class="col-lg-12" [(profile)]="profile"></prof-volunteerInfo>
+      <prof-volunteerRoles class="col-lg-12" [(profile)]="profile"></prof-volunteerRoles>
+
+      <form [formGroup]="addInfoForm" class="col-lg-12">
+        <div class="card shadow mb-4">
+          <!-- Card Header - Accordion -->
+          <a href="#additionalInfo" class="d-block card-header py-3" data-toggle="collapse" role="button"
+            aria-expanded="true" aria-controls="additionalInfo">
+            <h6 class="m-0 font-weight-bold text-primary">
+              Additional Information
+            </h6>
+          </a>
+          <!-- Card Content - Collapse -->
+          <div class="collapse show" id="additionalInfo">
+            <div class="card-body">
+              <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                  <div class="card-body">
+                    Q1. How did you find out about us?
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control form-control-user" formControlName="Answer1" />
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                  <div class="card-body">
+                    Q2. Can you confirm that you intent to live in Shanghai for
+                    the next 6 months?
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control form-control-user" formControlName="Answer2" />
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                  <div class="card-body">
+                    Q3. Do you speak Chinese which may help us?
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control form-control-user" formControlName="Answer3" />
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                  <div class="card-body">Q4. Are you student?</div>
+                </div>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control form-control-user" formControlName="Answer4" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div class="card shadow col-lg-12">
+        <!-- Card Header - Accordion -->
+        <a href="#comHis" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true"
+          aria-controls="comHis">
+          <h6 class="m-0 font-weight-bold text-primary">Comment History</h6>
+        </a>
+        <!-- Card Content - Collapse -->
+        <div class="collapse show" id="comHis">
+          <div class="card-body">
+            <div class="form-group">
+              <div class="p-3" *ngFor="let history of getHistoryCommentsList()">
+                {{ history.user }} added comment at {{ history.commentTIme }}:
+                <br>
+                {{ history.comment }}
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-10 mb-5 mb-sm-0">
+                <textarea class="p-3" [(ngModel)]="newComment" type="text" class="form-control form-control-user"
+                  name="newComment" mdInput placeholder="Add Comment" rows="4"></textarea>
+              </div>
+              <div class="col-sm-2" style="justify-content: flex-end;display: flex;">
+                <button [disabled]="!canAddComment()" (click)="onAddComment()" class="btn btn-primary btn-icon-split">
+                  <i class="fas fa-comments"></i>
+                  <span class="text">Add Comment</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <ng-template #scheduleModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Modal Title</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <!-- <span>{{modalData | json}}</span> -->
+      <app-hos-vis-schedule-dialog [appointments]="modalData">
+        <div id='loader'>LOADING....</div>
+      </app-hos-vis-schedule-dialog>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close()">Close</button>
+    </div>
+  </ng-template>

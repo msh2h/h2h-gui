@@ -1,0 +1,38 @@
+
+.loading{
+    color: white;
+    padding-top: 50px;
+}
+
+.pending{
+    background-color: lightgray
+  }
+
+  .rejected{
+    background-color: lightpink
+  }
+
+  .expired{
+    background-color: lightpink
+  }
+
+  .active{
+    background-color: lightgreen
+  }
+
+  .inactive{
+    background-color: lightpink
+  }
+
+  span{
+      display: inline-flex;
+      align-items: center;
+  }
+
+  .ag-row-hover{
+    background-color: lightskyblue;
+  }
+
+  .ag-cell-expandable{
+    font-weight: bold;
+  }
