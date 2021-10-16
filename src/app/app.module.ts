@@ -18,6 +18,11 @@ import { HosVisScheduleDialogComponent } from "./hos-vis-schedule-dialog/hos-vis
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
 import { ScheduleModule, DayService, WeekService, WorkWeekService, MonthService, AgendaService, MonthAgendaService, TimelineViewsService, TimelineMonthService } from '@syncfusion/ej2-angular-schedule';
+import { SchoolLibraryComponent } from './school-library/school-library.component';
+import {NgxSpinnerModule} from "ngx-spinner";
+import {AgGridModule} from "ag-grid-angular";
+import { ButtonRendererComponent } from './school-library/button-renderer/button-renderer.component';
+import { LibraryDetailComponent } from './school-library/library-detail/library-detail.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +30,10 @@ import { ScheduleModule, DayService, WeekService, WorkWeekService, MonthService,
     HomeComponent,
     CreateRoleDialogComponent,
     HosVisScheduleDialogComponent,
-    AlertComponent
+    AlertComponent,
+    SchoolLibraryComponent,
+    ButtonRendererComponent,
+    LibraryDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +44,9 @@ import { ScheduleModule, DayService, WeekService, WorkWeekService, MonthService,
     HttpClientModule,
     NgbModule,
     ButtonModule,
-    ScheduleModule
+    ScheduleModule,
+    NgxSpinnerModule,
+    AgGridModule
   ],
   providers: [
     CreateRoleDialogComponent,

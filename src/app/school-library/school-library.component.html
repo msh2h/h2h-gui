@@ -1,0 +1,23 @@
+<ngx-spinner type="ball-clip-rotate-multiple" size="medium">
+  <p class="loading">Loading User Profile...</p>
+</ngx-spinner>
+
+<!--<div *ngIf="!volunteers && isLoaded" class="container">
+  <span>We cannot load volunteers data for reason: {{error}}</span>
+</div>
+
+<div *ngIf="volunteers && isLoaded">
+  <span class="extra-large bold">Here is the list of all volunteers.</span>
+  <br>
+  <span>You can sort by each column by clicking the column name.
+    </span>
+</div>-->
+
+<ag-grid-angular style="height: 800px; width: 90%;" id="libraryList"
+                 class="ag-theme-alpine"
+                 [columnDefs]="columnDefs"
+                 [defaultColDef]="defaultColDef"
+                 [rowData]="libraryListData"
+                 [frameworkComponents]="frameworkComponents"
+                 [pagination]="true">
+</ag-grid-angular>
